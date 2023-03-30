@@ -7,6 +7,7 @@ const morgan = require('morgan') //查看接收
 const cookieParser = require('cookie-parser') //cookie
 const mongoose = require('mongoose') //Mongodb
 
+const acc = "acc"
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
