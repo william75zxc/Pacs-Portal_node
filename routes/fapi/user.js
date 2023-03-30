@@ -10,7 +10,7 @@ const User_Schema = require('../../model/username') //引入Login_Schema
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json())
 
-router.route('/Login') //登入
+router.route('/Loginaaa') //登入
     .post(async (req, res) => { //登入判斷
         console.log(req.body)
         const { powd, pass } = req.body
