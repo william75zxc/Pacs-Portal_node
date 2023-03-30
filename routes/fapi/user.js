@@ -13,7 +13,7 @@ router.use(bodyParser.json())
 router.route('/Login') //登入
     .post(async (req, res) => { //登入判斷
         console.log(req.body)
-        const { powd, pass } = req.body
+        const { email:powd, pass } = req.body
         const user = await User_Schema.findOne({ powd })
 
         if (!user) { //查無使用者
@@ -75,7 +75,7 @@ router.route('/creatuser') //註冊
         catch (err) { //資料輸入不完全
             //console.log(err)
             console.log('creat user Error')
-            res.status(402).json({ message: 'Error MongoDB', error: err })
+            res.status(403).json({ message: 'Error MongoDB', error: err })
         }
     })
 

@@ -26,7 +26,8 @@ router.route('/:dname')
         }
         catch(err){
             console.log(err)
-            res.status(404).json({message:'delete fail'})
+            res.status(404
+                ).json({message:'delete fail'})
         }
     })
 

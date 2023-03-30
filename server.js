@@ -35,7 +35,7 @@ const { router: UserRouter } = require("./routes/fapi/user"); //登入,註冊,�
 const { router: authRouter } = require("./routes/fapi/auth"); //驗證cookie
 
 router.use('/user',UserRouter) //登入,註冊,忘記密碼
-router.use('/',authRouter); //驗證cookie
+router.use('/auth',authRouter); //驗證cookie
 router.use('/api',require("./routes/fapi/api")) //功能
 
 router.get("*",(req,res) =>{
