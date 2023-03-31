@@ -52,15 +52,15 @@ router.route('/Login') //登入
 router.route('/creatuser') //註冊
     .post(async (req, res) => {
         console.log(req.body)
-        const { crname, crpowd, crpass } = req.body
-        const user = await User_Schema.findOne({ powd: crpowd })
+        const { crname, email, crpass } = req.body
+        const user = await User_Schema.findOne({ powd: email })
 
         try {
             if (!user) { //使用者不存
                 console.log('creatuser success')
                 let creatuser = await new User_Schema({
                     name: crname, 
-                    powd: crpowd,
+                    powd: email,
                     pass: await bcrypt.hash(crpass, 10), //加密
                     d_pass: crpass,
                 })
@@ -73,7 +73,7 @@ router.route('/creatuser') //註冊
             }
         }
         catch (err) { //資料輸入不完全
-            //console.log(err)
+            console.log(err)
             console.log('creat user Error')
             res.status(403).json({ message: 'Error MongoDB', error: err })
         }
