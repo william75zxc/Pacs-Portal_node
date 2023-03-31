@@ -40,7 +40,6 @@ router.route('/')
     .get(async (req, res) => { //查詢顯示病人資訊(name查詢)
         console.log(req.query)
         const { qname } = req.query
-        const user_count = await User_patient.count({})
 
         try {
             if (!qname) {
@@ -48,6 +47,7 @@ router.route('/')
                 res.status(200).json(user)
             }
             else {
+                console.log("acc")
                 const user = await User_patient.find({ name: { $regex: qname, $options: 'i' } })
                 res.status(200).json(user)
             }
