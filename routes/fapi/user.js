@@ -24,10 +24,10 @@ router.route('/Login') //登入
             if (await bcrypt.compare(pass, user.pass)) { //密碼正確(登入成功)
                 console.log('Login success')
                 const accessToken = jwt.sign({ id: user.id, isername: user.name }, process.env.JWT_KEY, {
-                    expiresIn: 60 * 60 * 24 * 30,
+                    expiresIn: 600000,
                 })
                 return res.cookie('accessToken', accessToken, {
-                    maxAge: 60 * 60 * 24 * 30, //有效期限(單位:s)
+                    maxAge: 600000, //有效期限(單位:s)
                     secure: false,  //資料必須加密傳送 https時需開啟使用
                     httpOnly: true,  //防止網站被攻擊   
                     sameSite: true, //是否可以跨域傳送
@@ -52,7 +52,7 @@ router.route('/Login') //登入
 router.route('/creatuser') //註冊
     .post(async (req, res) => {
         console.log(req.body)
-        const { crname, crpowd, crpass } = req.body
+        const { email:crname, crpowd, crpass } = req.body
         const user = await User_Schema.findOne({ powd: crpowd })
 
         try {
@@ -81,7 +81,7 @@ router.route('/creatuser') //註冊
 
 router.route('/Logout')
     .post((req, res) => { //登出
-        const accessToken = req.cookies.accessToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null)
+        const accessToken = req.cookies.accseeToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null)
         console.log('logout success')
         res.clearCookie('accessToken').status(200).json({ message: 'logout success' })
     })
