@@ -52,7 +52,7 @@ router.route('/Login') //登入
 router.route('/creatuser') //註冊
     .post(async (req, res) => {
         console.log(req.body)
-        const { email:crname, crpowd, crpass } = req.body
+        const { crname, crpowd, crpass } = req.body
         const user = await User_Schema.findOne({ powd: crpowd })
 
         try {

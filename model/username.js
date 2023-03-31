@@ -24,7 +24,7 @@ const Passward_Schema = new Schema(
         management: {
             type : String,
             required: true,
-            defaule:"使用者",
+            default:"使用者",
         },
     },
     { timestamps: true } //自動增加時間
