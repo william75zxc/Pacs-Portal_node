@@ -79,11 +79,11 @@ router.route('/creatuser') //註冊
         }
     })
 
-router.route('Logout')
+router.route('/Logout')
     .post((req, res) => { //登出
-        const accessToken = req.cookies.accseeToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null)
+        const accessToken = req.cookies.accessToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null)
         console.log('logout success')
-        res.clearCookie('accseeToken'.status(200).json({ message: 'logout success' }))
+        res.clearCookie('accessToken').status(200).json({ message: 'logout success' })
     })
 
 module.exports = { router }
