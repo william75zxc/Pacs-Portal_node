@@ -52,17 +52,17 @@ router.route('/Login') //登入
 router.route('/creatuser') //註冊
     .post(async (req, res) => {
         console.log(req.body)
-        const { crname, email, crpass } = req.body
+        const { username, email, pass } = req.body
         const user = await User_Schema.findOne({ powd: email })
 
         try {
             if (!user) { //使用者不存
                 console.log('creatuser success')
                 let creatuser = await new User_Schema({
-                    name: crname, 
+                    name: username, 
                     powd: email,
-                    pass: await bcrypt.hash(crpass, 10), //加密
-                    d_pass: crpass,
+                    pass: await bcrypt.hash(pass, 10), //加密
+                    d_pass: pass,
                 })
                 creatuser = await creatuser.save()
                 return res.status(200).json({ message: 'creat MongoDB data' })
