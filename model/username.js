@@ -3,11 +3,15 @@ const Schema = mongoose.Schema
 
 //建立Schema
 const Passward_Schema = new Schema(
-    {
+    {   
+        id :{
+            type:Number,
+            required: true, //不得為空直
+            unique: true, //唯一
+        },
         name: {
             type: String,
             required: true, //不得為空直
-            unique: true, //唯一
         },
         powd: {
             type: String,
